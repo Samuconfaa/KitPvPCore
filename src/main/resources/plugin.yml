@@ -1,3 +1,10 @@
 name: KitPvPCore
 version: '${project.version}'
 main: it.samuconfaa.kitpvpcore.KitPvPCore
+commands:
+  build:
+  fix:
+  reload:
+  stats:
+  drop:
+  spawnnpc:

@@ -1,0 +1,83 @@
+# KitPvP - Samuconfaa
+
+# general messages
+messages:
+  nopermission: "§4§lKITPVP §6§l>> §cNon hai abbastanza permessi!"
+  reload: "§4§lKITPVP §6§l>> §aConfig ricaricato!"
+  player-only: "§4§lKITPVP §6§l>> §cSolo i giocatori possono farlo!"
+  build-enable: "§4§lKITPVP §6§l>> §aModalità §a§lBUILD §aabilitata"
+  build-disable: "§4§lKITPVP §6§l>> §aModalità §a§lBUILD §adisabilitata"
+  not-allowed-break: "§4§lKITPVP §6§l>> §cNon puoi rompere i blocchi!"
+  not-allowed-place: "§4§lKITPVP §6§l>> §cNon puoi piazzare i blocchi!"
+  kill: "§4§lKITPVP §6§l>> §aHai ucciso %player% e hai ottenuto %money%€"
+  nomoney: "§4§lKITPVP §6§l>> §cNon hai abbastanza soldi"
+
+
+join-events:
+  messages:
+    - "§1******"
+    - "§eBenvenuto §6{PLAYER}"
+    - "§eSei connesso al nostro server §e§lKITPVP!"
+    - "§eRispetta tutte le regole e Buon Divertimento!"
+    - "§1******"
+
+death-event:
+  kill-message: "§e{KILLER} §cha ucciso §e{VICTIM}"
+
+kill-rewards: #Vault required
+  money: 100
+
+
+bounty: 500
+
+
+stats:
+  message:
+    - "§7§m---------------------------"
+    - "§d§lStatiche"
+    - " §fUccisioni&7: §d{KILLS}"
+    - " §fMorti&7: §d{DEATHS}"
+    - " §fStreak: §d{STREAK}"
+    - "&7&m---------------------------"
+
+stats-other:
+  message:
+    - "§7§m---------------------------"
+    - "§d§l{PLAYER}'s §d§lStatistiche"
+    - " §fUccisioni&7: §d{KILLS}"
+    - " §fMorti&7: §d{DEATHS}"
+    - " §fStreak: §d{STREAK}"
+    - "§7§m---------------------------"
+
+# repair
+price: 200
+GUIname: "Fabbro"
+GUIsize : 27
+anvilPos: 13
+anvilName: "§3§lFABBRO"
+lore1: "Clicca qui per riparare il tuo inventario!"
+lore2: ""
+lore3: "Costo:"
+glassName: "§c§lXXX"
+glassColor: 7
+
+#drop
+nomeGUI: "Custom GUI" # Nome della gui qui
+GUIHeight: 27 # Grandezza GUI
+
+position:  # Posizione degli item nella gui
+  mele: 11
+  freccia: 13
+  canna: 15
+
+glassNamed:   "§c§lYOUR.SERVERIP.COM"  # Nome con il quale vedere il vetro qui
+glassColord: 7 # ID rispettivo
+
+itemname:
+  mele: "§6§lMELE D'ORO"
+  freccia: "§9§lFRECCIA"
+  canna: "§8§lCANNA DA PESCA"
+
+status:
+  enable: "§aAbilitato"
+  disable: "§cDisabilitato"
