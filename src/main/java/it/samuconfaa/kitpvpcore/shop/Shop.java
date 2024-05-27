@@ -6,15 +6,31 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class Shop implements Listener {
-    public void openGUI(Player p){
-        Inventory shop = Bukkit.createInventory(p, 36, "Shop");
+    public static void openShop(Player p){
+        Inventory Shop = Bukkit.createInventory(p, 27, "Negozio");
 
-        ItemStack mele = new ItemStack(Material.GOLDEN_APPLE, 16, (short) 1);
+        ItemStack Generale = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta metag = Generale.getItemMeta();
+        metag.setDisplayName("Generale");
+        Generale.setItemMeta(metag);
+        Shop.setItem(11, Generale);
 
-        ItemStack ossidiana = new ItemStack(Material.OBSIDIAN,8);
 
-        ItemStack ragna = new ItemStack(Material.WEB)
+        ItemStack Pozioni = new ItemStack(Material.POTION);
+        ItemMeta meta = Generale.getItemMeta();
+        meta.setDisplayName("Pozioni");
+        Pozioni.setItemMeta(meta);
+        Shop.setItem(13, Pozioni);
+
+        ItemStack Libri = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta metal = Generale.getItemMeta();
+        metal.setDisplayName("Libri");
+        Libri.setItemMeta(metal);
+        Shop.setItem(15, Libri);
+
+        p.openInventory(Shop);
     }
 }

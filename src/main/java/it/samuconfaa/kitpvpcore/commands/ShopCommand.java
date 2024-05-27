@@ -17,7 +17,7 @@ public class ShopCommand implements CommandExecutor {
     public boolean onCommand(CommandSender se, Command command, String s, String[] strings) {
         Player player = (Player) se;
         if(se instanceof Player){
-            Shop.openGUI();
+            Shop.openShop(player);
         }else {
             se.sendMessage(plugin.getInstance().getConfig().getString("messages.player-only"));
         }
