@@ -4,6 +4,7 @@ import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
 import it.samuconfaa.kitpvpcore.config.UtilConfig;
 import it.samuconfaa.kitpvpcore.events.*;
+import it.samuconfaa.kitpvpcore.shop.Shop;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -23,6 +24,7 @@ public final class KitPvPCore extends JavaPlugin {
     public static KitPvPCore instance;
     public static ConfigurationManager configManager;
     private GUIListener guiListener;
+
 
     @Override
     public void onEnable() {
@@ -46,6 +48,7 @@ public final class KitPvPCore extends JavaPlugin {
         getCommand("reload").setExecutor(new reload(this));
         getCommand("stats").setExecutor(new stats(this));
         getCommand("drop").setExecutor(new DropCommand(this));
+        getCommand("shop").setExecutor(new ShopCommand(this));
     }
 
     public void loadEvents() {
@@ -56,6 +59,8 @@ public final class KitPvPCore extends JavaPlugin {
         pm.registerEvents(new onKill(), this);
         pm.registerEvents(new FIXlist(), this);
         pm.registerEvents(guiListener, this);
+        pm.registerEvents(new BroadCast(), this);
+        pm.registerEvents(new Shop(), this);
     }
 
     public void createYML() {
@@ -101,7 +106,7 @@ public final class KitPvPCore extends JavaPlugin {
         return 0;
     }
 
-    public void giveMoney(Player player, double amount) {
+    public static void giveMoney(Player player, double amount) {
         if (econ != null) {
             econ.depositPlayer(player, amount);
         }
