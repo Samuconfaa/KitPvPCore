@@ -71,7 +71,7 @@ public class Manager {
         return getPlayerStats(player).getBounty();
     }
 
-    private static PlayerStats getPlayerStats(Player player) {
+    public static PlayerStats getPlayerStats(Player player) {
         return playerStatsMap.get(player);
     }
 }
@@ -83,10 +83,10 @@ class PlayerStats {
     private static int bounty;
 
     public PlayerStats() {
-        this.kills = 0;
-        this.deaths = 0;
-        this.killStreak = 0;
-        this.bounty = 0;
+        kills = 0;
+        deaths = 0;
+        killStreak = 0;
+        bounty = 0;
     }
 
     public static void increaseKills() {
@@ -107,7 +107,7 @@ class PlayerStats {
         deaths++;
     }
 
-    public void decreaseDeaths() {
+    public static void decreaseDeaths() {
         if (deaths > 0) {
             deaths--;
         }
@@ -129,8 +129,8 @@ class PlayerStats {
         return killStreak;
     }
 
-    public void setBounty(int bounty) {
-        this.bounty = bounty;
+    public static void setBounty(int newBounty) {
+        bounty = newBounty;
     }
 
     public static void increaseBounty(int amount) {
@@ -146,5 +146,7 @@ class PlayerStats {
     public static int getBounty() {
         return bounty;
     }
+
+
 }
 

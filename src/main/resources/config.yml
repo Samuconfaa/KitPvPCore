@@ -9,7 +9,7 @@ messages:
   build-disable: "§4§lKITPVP §6§l>> §aModalità §a§lBUILD §adisabilitata"
   not-allowed-break: "§4§lKITPVP §6§l>> §cNon puoi rompere i blocchi!"
   not-allowed-place: "§4§lKITPVP §6§l>> §cNon puoi piazzare i blocchi!"
-  kill: "§4§lKITPVP §6§l>> §aHai ucciso %player% e hai ottenuto %money%€"
+  kill: "§4§lKITPVP §6§l>> §a%player% ha ucciso %victim%"
   nomoney: "§4§lKITPVP §6§l>> §cNon hai abbastanza soldi"
 
 
