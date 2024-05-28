@@ -1,10 +1,13 @@
 package it.samuconfaa.kitpvpcore.shop;
 
+import it.samuconfaa.kitpvpcore.KitPvPCore;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,7 +26,7 @@ public class Generale implements Listener {
         Generale.setItem(11, Spada);
 
 
-        ItemStack Mela = new ItemStack(Material.GOLDEN_APPLE,2, (short) 1);
+        ItemStack Mela = new ItemStack(Material.GOLDEN_APPLE, 2, (short) 1);
         ItemMeta metam = Mela.getItemMeta();
         metam.setDisplayName("Mela D'Oro");
         metam.setLore(Collections.singletonList("Prezzo: €2200"));
@@ -51,5 +54,36 @@ public class Generale implements Listener {
         Generale.setItem(26, freccia);
 
         p.openInventory(Generale);
+    }
+
+    @EventHandler
+    public void onInvClick(InventoryClickEvent e) {
+        Inventory inv = e.getInventory();
+        if (inv.getHolder() == null && "Negozio".equals(inv.getName())) {
+            e.setCancelled(true);
+
+
+            Player p = (Player) e.getWhoClicked();
+            int slot = e.getRawSlot();
+            if (slot == 11) {
+                ItemStack Spada = new ItemStack(Material.DIAMOND_SWORD);
+                p.getInventory().addItem(Spada);
+                KitPvPCore.removeMoney(p, 800);
+            } else if (slot == 12) {
+                ItemStack Mela = new ItemStack(Material.GOLDEN_APPLE, 2, (short) 1);
+                p.getInventory().addItem(Mela);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 14) {
+                ItemStack Latte = new ItemStack(Material.MILK_BUCKET);
+                p.getInventory().addItem(Latte);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 15) {
+                ItemStack exp = new ItemStack(Material.EXP_BOTTLE, 32);
+                p.getInventory().addItem(exp);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 26) {
+                Shop.openShop(p);
+            }
+        }
     }
 }

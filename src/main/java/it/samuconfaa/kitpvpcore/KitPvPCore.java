@@ -1,10 +1,13 @@
 package it.samuconfaa.kitpvpcore;
 
+import it.samuconfaa.kitpvpcore.NPC.DropNPC;
+import it.samuconfaa.kitpvpcore.NPC.FixNPC;
+import it.samuconfaa.kitpvpcore.NPC.ShopNPC;
 import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
 import it.samuconfaa.kitpvpcore.config.UtilConfig;
 import it.samuconfaa.kitpvpcore.events.*;
-import it.samuconfaa.kitpvpcore.shop.Shop;
+import it.samuconfaa.kitpvpcore.shop.*;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -49,6 +52,7 @@ public final class KitPvPCore extends JavaPlugin {
         getCommand("stats").setExecutor(new stats(this));
         getCommand("drop").setExecutor(new DropCommand(this));
         getCommand("shop").setExecutor(new ShopCommand(this));
+        getCommand("kitnpc").setExecutor(new NPCCommand(this));
     }
 
     public void loadEvents() {
@@ -61,6 +65,12 @@ public final class KitPvPCore extends JavaPlugin {
         pm.registerEvents(guiListener, this);
         pm.registerEvents(new BroadCast(), this);
         pm.registerEvents(new Shop(), this);
+        pm.registerEvents(new Generale(), this);
+        pm.registerEvents(new Libri(), this);
+        pm.registerEvents(new Pozioni(), this);
+        pm.registerEvents(new DropNPC(), this);
+        pm.registerEvents(new ShopNPC(), this);
+        pm.registerEvents(new FixNPC(), this);
     }
 
     public void createYML() {

@@ -1,7 +1,6 @@
 package it.samuconfaa.kitpvpcore.events;
 
 import it.samuconfaa.kitpvpcore.KitPvPCore;
-import it.samuconfaa.kitpvpcore.statistiche.Manager;
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -20,11 +19,10 @@ public class onKill implements Listener {
 
             //vittima
 
-            Manager.addDeath(vittima);
+
 
             //killer
 
-            Manager.addKill(killer);
             KitPvPCore.giveMoney(killer,KitPvPCore.getInstance().getConfig().getInt("kill-rewards.money"));
 
 

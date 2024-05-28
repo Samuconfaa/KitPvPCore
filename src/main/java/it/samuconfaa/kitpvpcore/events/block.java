@@ -16,7 +16,7 @@ public class block implements Listener {
         Player player = event.getPlayer();
         if (!KitPvPCore.playerlist.contains(player.getUniqueId())) {
             event.setCancelled(true);
-            player.sendMessage(KitPvPCore.getInstance().getConfig().getString("not-allowed-place"));
+            player.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.not-allowed-place"));
         } else {
             event.setCancelled(false);
         }
@@ -27,7 +27,7 @@ public class block implements Listener {
         Player player = event.getPlayer();
         if (!KitPvPCore.playerlist.contains(player.getUniqueId())) {
             event.setCancelled(true);
-            player.sendMessage(KitPvPCore.getInstance().getConfig().getString("not-allowed-break"));
+            player.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.not-allowed-break"));
         } else {
             event.setCancelled(false);
         }

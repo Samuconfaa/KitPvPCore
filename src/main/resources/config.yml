@@ -81,3 +81,8 @@ itemname:
 status:
   enable: "§aAbilitato"
   disable: "§cDisabilitato"
+
+NPC:
+  shopName: "Shop"
+  dropName: "Drop"
+  fixName: "Fix"

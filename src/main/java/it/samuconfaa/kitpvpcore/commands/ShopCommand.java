@@ -23,6 +23,6 @@ public class ShopCommand implements CommandExecutor {
         }
 
 
-        return false;
+        return true;
     }
 }

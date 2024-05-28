@@ -43,7 +43,7 @@ public class UtilConfig {
         return this.configurationFile;
     }
 
-    public void reloadConfig() {
+    public static void reloadConfig() {
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 

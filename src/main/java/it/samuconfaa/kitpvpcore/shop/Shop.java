@@ -3,7 +3,10 @@ package it.samuconfaa.kitpvpcore.shop;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,5 +35,24 @@ public class Shop implements Listener {
         Shop.setItem(15, Libri);
 
         p.openInventory(Shop);
+    }
+
+    @EventHandler
+    public void onInvClick(InventoryClickEvent e){
+       Inventory inv = e.getInventory();
+       if(inv.getHolder() == null && "Negozio".equals(inv.getName())) {
+           e.setCancelled(true);
+
+
+           Player p = (Player) e.getWhoClicked();
+           int slot = e.getRawSlot();
+           if (slot == 11) {
+               Generale.openGenerale(p);
+           } else if (slot == 13) {
+               Pozioni.openPozioni(p);
+           } else if (slot == 15) {
+               Libri.openLibri(p);
+           }
+       }
     }
 }

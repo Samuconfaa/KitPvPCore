@@ -16,14 +16,15 @@ public class DropCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, org.bukkit.command.Command command, String s, String[] strings) {
-         if (strings.length == 0) {
                 if (commandSender instanceof Player) {
                     Player player = (Player) commandSender;
                     plugin.getGuiListener().openGui(player);
                     return true;
+                }else{
+                    KitPvPCore.getInstance().getConfig().getString("messages.player-only");
                 }
             return true;
-        }
-        return false;
+
+
     }
 }

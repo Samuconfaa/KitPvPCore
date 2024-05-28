@@ -1,8 +1,11 @@
 package it.samuconfaa.kitpvpcore.shop;
 
+import it.samuconfaa.kitpvpcore.KitPvPCore;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,7 +15,7 @@ import java.util.Collections;
 
 public class Libri implements Listener {
 
-    public void apriLibriGUI(Player p) {
+    public static void openLibri(Player p) {
         Inventory Libri = Bukkit.createInventory(p, 27, "Libri");
 
         ItemStack affilatezza = new ItemStack(Material.ENCHANTED_BOOK);
@@ -71,5 +74,48 @@ public class Libri implements Listener {
         Libri.setItem(26, freccia);
 
         p.openInventory(Libri);
+    }
+
+    @EventHandler
+    public void onInvClick(InventoryClickEvent e) {
+        Inventory inv = e.getInventory();
+        if (inv.getHolder() == null && "Negozio".equals(inv.getName())) {
+            e.setCancelled(true);
+
+
+            Player p = (Player) e.getWhoClicked();
+            int slot = e.getRawSlot();
+            if (slot == 11) {
+                ItemStack protezione = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(protezione);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 12) {
+                ItemStack ind = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(ind);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 13) {
+                ItemStack adf = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(adf);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 14) {
+                ItemStack inf = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(inf);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 15) {
+                ItemStack am = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(am);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 16) {
+                ItemStack imp = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(imp);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 10) {
+                ItemStack sh = new ItemStack(Material.ENCHANTED_BOOK);
+                p.getInventory().addItem(sh);
+                KitPvPCore.removeMoney(p, 2200);
+            } else if (slot == 26) {
+                Shop.openShop(p);
+            }
+        }
     }
 }

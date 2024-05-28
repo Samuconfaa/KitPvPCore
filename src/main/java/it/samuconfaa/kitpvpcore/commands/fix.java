@@ -17,7 +17,7 @@ public class fix implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-         if (args.length == 0) {
+
             if (sender instanceof Player) {
                 Player player = (Player) sender;
                 FIXlist.openGUI(player);
@@ -25,7 +25,7 @@ public class fix implements CommandExecutor {
             } else {
                 sender.sendMessage(plugin.getInstance().getConfig().getString("messages.player-only"));
             }
-        }
-        return false;
+
+        return true;
     }
 }
