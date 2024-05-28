@@ -3,6 +3,7 @@ package it.samuconfaa.kitpvpcore;
 import it.samuconfaa.kitpvpcore.NPC.DropNPC;
 import it.samuconfaa.kitpvpcore.NPC.FixNPC;
 import it.samuconfaa.kitpvpcore.NPC.ShopNPC;
+import it.samuconfaa.kitpvpcore.Stats.Manager;
 import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
 import it.samuconfaa.kitpvpcore.config.UtilConfig;
@@ -57,10 +58,11 @@ public final class KitPvPCore extends JavaPlugin {
 
     public void loadEvents() {
         PluginManager pm = getPluginManager();
+        Manager manager = new Manager();
         pm.registerEvents(new block(), this);
         pm.registerEvents(new FIXlist(), this);
-        pm.registerEvents(new join(), this);
-        pm.registerEvents(new onKill(), this);
+        pm.registerEvents(new join(manager), this);
+        pm.registerEvents(new onKill(manager), this);
         pm.registerEvents(new FIXlist(), this);
         pm.registerEvents(guiListener, this);
         pm.registerEvents(new BroadCast(), this);
@@ -72,6 +74,7 @@ public final class KitPvPCore extends JavaPlugin {
         pm.registerEvents(new ShopNPC(), this);
         pm.registerEvents(new FixNPC(), this);
     }
+
 
     public void createYML() {
         settings = new UtilConfig(this, "config.yml", null);

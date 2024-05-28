@@ -23,12 +23,12 @@ public class ShopNPC implements Listener{
         NPC npc = event.getNPC();
         Player player = event.getClicker();
         if (npc.getName().equals(KitPvPCore.getInstance().getConfig().getString("NPC.shopName"))) {
-            String command = "drop";
+            String command = "shop";
             player.performCommand(command);
         }
     }
 
-    private void setRandomSkin(NPC npc) {
+    public static void setRandomSkin(NPC npc) {
         UUID uuid = UUID.randomUUID();
         npc.data().set("player-skin", uuid.toString());
     }

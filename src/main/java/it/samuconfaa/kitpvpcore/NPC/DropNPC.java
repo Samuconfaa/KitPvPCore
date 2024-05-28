@@ -20,7 +20,7 @@ public class DropNPC implements Listener {
     public static void createNPC(Player p){
         NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, KitPvPCore.getInstance().getConfig().getString("NPC.dropName"));
         npc.spawn(p.getLocation());
-        setRandomSkin(npc);
+        ShopNPC.setRandomSkin(npc);
     }
 
     @EventHandler
@@ -33,8 +33,5 @@ public class DropNPC implements Listener {
         }
     }
 
-    private void setRandomSkin(NPC npc) {
-        UUID uuid = UUID.randomUUID();
-        npc.data().set("player-skin", uuid.toString());
-    }
+
 }

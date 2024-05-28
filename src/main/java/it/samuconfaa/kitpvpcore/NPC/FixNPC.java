@@ -15,7 +15,7 @@ public class FixNPC implements Listener{
     public static void createNPC(Player p){
         NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, KitPvPCore.getInstance().getConfig().getString("NPC.fixName"));
         npc.spawn(p.getLocation());
-        setRandomSkin(npc);
+        ShopNPC.setRandomSkin(npc);
     }
 
     @EventHandler
@@ -23,13 +23,10 @@ public class FixNPC implements Listener{
         NPC npc = event.getNPC();
         Player player = event.getClicker();
         if (npc.getName().equals(KitPvPCore.getInstance().getConfig().getString("NPC.fixName"))) {
-            String command = "drop";
+            String command = "fix";
             player.performCommand(command);
         }
     }
 
-    private void setRandomSkin(NPC npc) {
-        UUID uuid = UUID.randomUUID();
-        npc.data().set("player-skin", uuid.toString());
-    }
+
 }
