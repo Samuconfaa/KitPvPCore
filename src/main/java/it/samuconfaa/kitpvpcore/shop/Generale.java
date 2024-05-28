@@ -3,7 +3,6 @@ package it.samuconfaa.kitpvpcore.shop;
 import it.samuconfaa.kitpvpcore.KitPvPCore;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -24,7 +23,6 @@ public class Generale implements Listener {
         metag.setLore(Collections.singletonList("Prezzo: €800"));
         Spada.setItemMeta(metag);
         Generale.setItem(11, Spada);
-
 
         ItemStack Mela = new ItemStack(Material.GOLDEN_APPLE, 2, (short) 1);
         ItemMeta metam = Mela.getItemMeta();
@@ -59,9 +57,8 @@ public class Generale implements Listener {
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
         Inventory inv = e.getInventory();
-        if (inv.getHolder() == null && "Negozio".equals(inv.getName())) {
+        if (inv.getHolder() == null && "Generale".equals(inv.getTitle())) {
             e.setCancelled(true);
-
 
             Player p = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();

@@ -1,58 +1,57 @@
 package it.samuconfaa.kitpvpcore.shop;
 
+import it.samuconfaa.kitpvpcore.KitPvPCore;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 public class Shop implements Listener {
-    public static void openShop(Player p){
-        Inventory Shop = Bukkit.createInventory(p, 27, "Negozio");
+    public static void openShop(Player p) {
+        Inventory shop = Bukkit.createInventory(p, 27, KitPvPCore.getInstance().getConfig().getString("xx"));
 
-        ItemStack Generale = new ItemStack(Material.DIAMOND_SWORD);
-        ItemMeta metag = Generale.getItemMeta();
-        metag.setDisplayName("Generale");
-        Generale.setItemMeta(metag);
-        Shop.setItem(11, Generale);
+        ItemStack generale = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta metaGenerale = generale.getItemMeta();
+        metaGenerale.setDisplayName("Generale");
+        generale.setItemMeta(metaGenerale);
+        shop.setItem(11, generale);
 
+        ItemStack pozioni = new ItemStack(Material.POTION);
+        ItemMeta metaPozioni = pozioni.getItemMeta();
+        metaPozioni.setDisplayName("Pozioni");
+        pozioni.setItemMeta(metaPozioni);
+        shop.setItem(13, pozioni);
 
-        ItemStack Pozioni = new ItemStack(Material.POTION);
-        ItemMeta meta = Generale.getItemMeta();
-        meta.setDisplayName("Pozioni");
-        Pozioni.setItemMeta(meta);
-        Shop.setItem(13, Pozioni);
+        ItemStack libri = new ItemStack(Material.ENCHANTED_BOOK);
+        ItemMeta metaLibri = libri.getItemMeta();
+        metaLibri.setDisplayName("Libri");
+        libri.setItemMeta(metaLibri);
+        shop.setItem(15, libri);
 
-        ItemStack Libri = new ItemStack(Material.ENCHANTED_BOOK);
-        ItemMeta metal = Generale.getItemMeta();
-        metal.setDisplayName("Libri");
-        Libri.setItemMeta(metal);
-        Shop.setItem(15, Libri);
-
-        p.openInventory(Shop);
+        p.openInventory(shop);
     }
 
     @EventHandler
-    public void onInvClick(InventoryClickEvent e){
-       Inventory inv = e.getInventory();
-       if(inv.getHolder() == null && "Negozio".equals(inv.getName())) {
-           e.setCancelled(true);
+    public void onInvClick(InventoryClickEvent e) {
+        Inventory inv = e.getInventory();
+        String nome = inv.getTitle();
+        if (inv.getHolder() == null && KitPvPCore.getInstance().getConfig().getString("xx").equals(nome)) {
+            e.setCancelled(true);
 
-
-           Player p = (Player) e.getWhoClicked();
-           int slot = e.getRawSlot();
-           if (slot == 11) {
-               Generale.openGenerale(p);
-           } else if (slot == 13) {
-               Pozioni.openPozioni(p);
-           } else if (slot == 15) {
-               Libri.openLibri(p);
-           }
-       }
+            Player p = (Player) e.getWhoClicked();
+            int slot = e.getRawSlot();
+            if (slot == 11) {
+                Generale.openGenerale(p);
+            } else if (slot == 13) {
+                Pozioni.openPozioni(p);
+            } else if (slot == 15) {
+                Libri.openLibri(p);
+            }
+        }
     }
 }
