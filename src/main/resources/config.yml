@@ -11,6 +11,7 @@ messages:
   not-allowed-place: "§4§lKITPVP §6§l>> §cNon puoi piazzare i blocchi!"
   kill: "§4§lKITPVP §6§l>> §a%player% ha ucciso %victim%"
   nomoney: "§4§lKITPVP §6§l>> §cNon hai abbastanza soldi"
+  nonOnlinePlayer: "Il giocatore specificato non è online."
 
 xx: "PORCODIO"
 
@@ -33,15 +34,6 @@ bounty: 500
 
 
 stats:
-  message:
-    - "§7§m---------------------------"
-    - "§d§lStatiche"
-    - " §fUccisioni&7: §d{KILLS}"
-    - " §fMorti&7: §d{DEATHS}"
-    - " §fStreak: §d{STREAK}"
-    - "&7&m---------------------------"
-
-stats-other:
   message:
     - "§7§m---------------------------"
     - "§d§l{PLAYER}'s §d§lStatistiche"
@@ -87,3 +79,5 @@ NPC:
   shopName: "Shop"
   dropName: "Drop"
   fixName: "Fix"
+  noNPC: "NPC non trovato con l'ID specificato."
+  removedNPC: "NPC rimosso con successo!"

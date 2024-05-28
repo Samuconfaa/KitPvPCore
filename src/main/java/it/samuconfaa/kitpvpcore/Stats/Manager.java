@@ -7,10 +7,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Manager {
-    private Map<Player, Integer> kill = new HashMap<>();
-    private Map<Player, Integer> morti = new HashMap<>();
-    private Map<Player, Integer> streak = new HashMap<>();
-    private Map<Player, Integer> taglia = new HashMap<>();
+    Map<Player, Integer> kill = new HashMap<>();
+    Map<Player, Integer> morti = new HashMap<>();
+    Map<Player, Integer> streak = new HashMap<>();
+    Map<Player, Integer> taglia = new HashMap<>();
 
     public void incrementKills(Player p) {
         kill.put(p, kill.getOrDefault(p, 0) + 1);

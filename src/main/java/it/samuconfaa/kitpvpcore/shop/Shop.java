@@ -37,10 +37,10 @@ public class Shop implements Listener {
     }
 
     @EventHandler
-    public void onInvClick(InventoryClickEvent e) {
-        Inventory inv = e.getInventory();
-        String nome = inv.getTitle();
-        if (inv.getHolder() == null && KitPvPCore.getInstance().getConfig().getString("xx").equals(nome)) {
+    public void onInventoryClick(InventoryClickEvent e) {
+        Inventory inv = e.getClickedInventory();
+
+        if (inv != null && inv.equals(KitPvPCore.getInstance().getConfig().getString("xx"))) {
             e.setCancelled(true);
 
             Player p = (Player) e.getWhoClicked();

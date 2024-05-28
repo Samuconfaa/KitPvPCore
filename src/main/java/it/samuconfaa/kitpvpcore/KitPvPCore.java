@@ -4,6 +4,7 @@ import it.samuconfaa.kitpvpcore.NPC.DropNPC;
 import it.samuconfaa.kitpvpcore.NPC.FixNPC;
 import it.samuconfaa.kitpvpcore.NPC.ShopNPC;
 import it.samuconfaa.kitpvpcore.Stats.Manager;
+import it.samuconfaa.kitpvpcore.Stats.StatsCommand;
 import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
 import it.samuconfaa.kitpvpcore.config.UtilConfig;
@@ -47,13 +48,15 @@ public final class KitPvPCore extends JavaPlugin {
     }
 
     public void loadCommands() {
+        Manager statsManager = new Manager();
         getCommand("build").setExecutor(new build(this));
         getCommand("fix").setExecutor(new fix(this));
         getCommand("reload").setExecutor(new reload(this));
-        getCommand("stats").setExecutor(new stats(this));
+        getCommand("stats").setExecutor(new StatsCommand(this, statsManager));
         getCommand("drop").setExecutor(new DropCommand(this));
         getCommand("shop").setExecutor(new ShopCommand(this));
         getCommand("kitnpc").setExecutor(new NPCCommand(this));
+        getCommand("kitnpclist").setExecutor(new NPCListCommand(this));
     }
 
     public void loadEvents() {
