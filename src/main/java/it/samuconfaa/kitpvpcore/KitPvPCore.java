@@ -4,7 +4,7 @@ import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
 import it.samuconfaa.kitpvpcore.config.UtilConfig;
 import it.samuconfaa.kitpvpcore.events.*;
-import it.samuconfaa.kitpvpcore.statistiche.PlaceHolder;
+import it.samuconfaa.kitpvpcore.shop.Shop;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.PluginManager;
@@ -34,9 +34,6 @@ public final class KitPvPCore extends JavaPlugin {
         guiListener = new GUIListener(this);
         loadCommands();
         loadEvents();
-        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
-            new PlaceHolder().register();
-        }
         if (!setupEconomy()) {
             getLogger().severe("Vault non è installato o nessun plugin economico è trovato!");
             getServer().getPluginManager().disablePlugin(this);
@@ -51,6 +48,7 @@ public final class KitPvPCore extends JavaPlugin {
         getCommand("reload").setExecutor(new reload(this));
         getCommand("stats").setExecutor(new stats(this));
         getCommand("drop").setExecutor(new DropCommand(this));
+        getCommand("shop").setExecutor(new ShopCommand(this));
     }
 
     public void loadEvents() {
@@ -62,6 +60,7 @@ public final class KitPvPCore extends JavaPlugin {
         pm.registerEvents(new FIXlist(), this);
         pm.registerEvents(guiListener, this);
         pm.registerEvents(new BroadCast(), this);
+        pm.registerEvents(new Shop(), this);
     }
 
     public void createYML() {

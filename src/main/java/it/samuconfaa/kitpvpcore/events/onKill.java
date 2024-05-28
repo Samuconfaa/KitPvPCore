@@ -17,24 +17,17 @@ public class onKill implements Listener {
         if(e.getEntity().getKiller() instanceof Player){
             Player vittima = e.getEntity().getKiller();
             Player killer = e.getEntity();
-            double taglia = Manager.getBounty(vittima);
+
             //vittima
-            Manager.setBounty(vittima, 0);
-            Manager.resetKillStreak(vittima);
-            Manager.increaseDeaths(vittima);
+
+            Manager.addDeath(vittima);
 
             //killer
-            Manager.increaseBounty(killer, KitPvPCore.getInstance().getConfig().getInt("bounty"));
-            Manager.increaseKills(killer);
-            Manager.increaseKillStreak(killer);
+
+            Manager.addKill(killer);
             KitPvPCore.giveMoney(killer,KitPvPCore.getInstance().getConfig().getInt("kill-rewards.money"));
-            int i = Manager.getBounty(killer);
-            if(i != 0) {
-                KitPvPCore.giveMoney(killer, i);
-                for(Player player : Bukkit.getOnlinePlayers()){
-                    player.playSound(player.getLocation(), Sound.ENTITY_LIGHTNING_THUNDER, 1.0f, 1.0f);
-                }
-            }
+
+
             BroadCast.broadcastMessage(KitPvPCore.getInstance().getConfig().getString("messages.kill")
                     .replace((CharSequence) "%player%", (CharSequence) killer)
                     .replace((CharSequence) "%victim%", (CharSequence) vittima));
