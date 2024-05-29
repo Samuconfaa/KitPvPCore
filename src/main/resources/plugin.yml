@@ -1,7 +1,7 @@
 name: KitPvPCore
 version: '${project.version}'
 main: it.samuconfaa.kitpvpcore.KitPvPCore
-depend: [Citizens]
+depend: [Citizens] [PlaceholderAPI] [Vault]
 commands:
   build:
   fix:

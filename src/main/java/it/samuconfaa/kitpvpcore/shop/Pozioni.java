@@ -16,80 +16,59 @@ import java.util.Collections;
 public class Pozioni implements Listener {
 
     public static void openPozioni(Player p) {
-        Inventory Pozioni = Bukkit.createInventory(p, 27, "Pozioni");
+        // Imposta il titolo dell'inventario dal config
+        String inventoryTitle = KitPvPCore.getInstance().getConfig().getString("shopName.pot", "Negozio di Pozioni");
+        Inventory pozioni = Bukkit.createInventory(p, 27, inventoryTitle);
 
-        ItemStack velocita = new ItemStack(Material.POTION, 1, (short) 8226);
-        ItemMeta metaVelocita = velocita.getItemMeta();
-        metaVelocita.setDisplayName("Pozione di Velocità II");
-        metaVelocita.setLore(Collections.singletonList("Prezzo: €2100"));
-        velocita.setItemMeta(metaVelocita);
-        Pozioni.setItem(11, velocita);
+        // Crea le pozioni con i relativi metadati
+        pozioni.setItem(11, creaPozione(Material.POTION, (short) 8226, "Pozione di Velocità II", "Prezzo: €2100"));
+        pozioni.setItem(12, creaPozione(Material.POTION, (short) 8233, "Pozione di Forza II", "Prezzo: €5000"));
+        pozioni.setItem(13, creaPozione(Material.POTION, (short) 8195, "Pozione di Resistenza al Fuoco", "Prezzo: €700"));
+        pozioni.setItem(14, creaPozione(Material.POTION, (short) 16394, "Pozione Splash di Lentezza", "Prezzo: €4500"));
+        pozioni.setItem(15, creaPozione(Material.POTION, (short) 16388, "Pozione Splash di Avvelenamento", "Prezzo: €4500"));
 
-        ItemStack forza = new ItemStack(Material.POTION, 1, (short) 8233); // Pozione di Forza II
-        ItemMeta metaForza = forza.getItemMeta();
-        metaForza.setDisplayName("Pozione di Forza II");
-        metaForza.setLore(Collections.singletonList("Prezzo: €5000"));
-        forza.setItemMeta(metaForza);
-        Pozioni.setItem(12, forza);
-
-        ItemStack resistenzaFuoco = new ItemStack(Material.POTION, 1, (short) 8195); // Pozione di Resistenza al Fuoco
-        ItemMeta metaResistenzaFuoco = resistenzaFuoco.getItemMeta();
-        metaResistenzaFuoco.setDisplayName("Pozione di Resistenza al Fuoco");
-        metaResistenzaFuoco.setLore(Collections.singletonList("Prezzo: €700"));
-        resistenzaFuoco.setItemMeta(metaResistenzaFuoco);
-        Pozioni.setItem(13, resistenzaFuoco);
-
-        ItemStack splashLentezza = new ItemStack(Material.SPLASH_POTION, 1, (short) 16394); // Pozione Splash di Lentezza
-        ItemMeta metaSplashLentezza = splashLentezza.getItemMeta();
-        metaSplashLentezza.setDisplayName("Pozione Splash di Lentezza");
-        metaSplashLentezza.setLore(Collections.singletonList("Prezzo: €4500"));
-        splashLentezza.setItemMeta(metaSplashLentezza);
-        Pozioni.setItem(14, splashLentezza);
-
-        ItemStack splashAvvelenamento = new ItemStack(Material.SPLASH_POTION, 1, (short) 16388); // Pozione Splash di Avvelenamento
-        ItemMeta metaSplashAvvelenamento = splashAvvelenamento.getItemMeta();
-        metaSplashAvvelenamento.setDisplayName("Pozione Splash di Avvelenamento");
-        metaSplashAvvelenamento.setLore(Collections.singletonList("Prezzo: €4500"));
-        splashAvvelenamento.setItemMeta(metaSplashAvvelenamento);
-        Pozioni.setItem(15, splashAvvelenamento);
-
+        // Crea l'elemento per tornare indietro
         ItemStack freccia = new ItemStack(Material.ARROW);
-        ItemMeta metaf = freccia.getItemMeta();
-        metaf.setDisplayName("Torna Indietro");
-        freccia.setItemMeta(metaf);
-        Pozioni.setItem(26, freccia);
+        ItemMeta metaFreccia = freccia.getItemMeta();
+        metaFreccia.setDisplayName("Torna Indietro");
+        freccia.setItemMeta(metaFreccia);
+        pozioni.setItem(26, freccia);
 
-        p.openInventory(Pozioni);
+        // Apre l'inventario al giocatore
+        p.openInventory(pozioni);
+    }
+
+    private static ItemStack creaPozione(Material material, short data, String displayName, String lore) {
+        ItemStack pozione = new ItemStack(material, 1, data);
+        ItemMeta meta = pozione.getItemMeta();
+        meta.setDisplayName(displayName);
+        meta.setLore(Collections.singletonList(lore));
+        pozione.setItemMeta(meta);
+        return pozione;
     }
 
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
         Inventory inv = e.getInventory();
-        if (inv.getHolder() == null && "Negozio".equals(inv.getName())) {
+        if (inv != null && inv.getTitle().equals(KitPvPCore.getInstance().getConfig().getString("shopName.pot", "Negozio di Pozioni"))) {
             e.setCancelled(true);
-
 
             Player p = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if (slot == 11) {
-                ItemStack velocita = new ItemStack(Material.POTION, 1, (short) 8226);
-                p.getInventory().addItem(velocita);
+            if (slot == 11 && KitPvPCore.checkMoney(p) >= 2100) {
+                p.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 8226));
                 KitPvPCore.removeMoney(p, 2100);
-            } else if (slot == 12) {
-                ItemStack forza = new ItemStack(Material.POTION, 1, (short) 8233);
-                p.getInventory().addItem(forza);
+            } else if (slot == 12 && KitPvPCore.checkMoney(p) >= 5000) {
+                p.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 8233));
                 KitPvPCore.removeMoney(p, 5000);
-            } else if (slot == 13) {
-                ItemStack resistenzaFuoco = new ItemStack(Material.POTION, 1, (short) 8195);
-                p.getInventory().addItem(resistenzaFuoco);
+            } else if (slot == 13 && KitPvPCore.checkMoney(p) >= 700) {
+                p.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 8195));
                 KitPvPCore.removeMoney(p, 700);
-            } else if (slot == 14) {
-                ItemStack splashLentezza = new ItemStack(Material.SPLASH_POTION, 1, (short) 16394);
-                p.getInventory().addItem(splashLentezza);
+            } else if (slot == 14 && KitPvPCore.checkMoney(p) >= 4500) {
+                p.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 16394));
                 KitPvPCore.removeMoney(p, 4500);
-            } else if (slot == 15) {
-                ItemStack splashAvvelenamento = new ItemStack(Material.SPLASH_POTION, 1, (short) 16388);
-                p.getInventory().addItem(splashAvvelenamento);
+            } else if (slot == 15 && KitPvPCore.checkMoney(p) >= 4500) {
+                p.getInventory().addItem(new ItemStack(Material.POTION, 1, (short) 16388));
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 26) {
                 Shop.openShop(p);

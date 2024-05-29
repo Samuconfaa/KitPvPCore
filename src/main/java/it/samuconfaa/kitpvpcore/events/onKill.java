@@ -24,12 +24,12 @@ public class onKill implements Listener {
         if(e.getEntity().getKiller() instanceof Player){
             Player vittima = e.getEntity().getKiller();
             Player killer = e.getEntity();
-            double taglia = manager.getTaglia(vittima);
+            double taglia = manager.getBounty(vittima);
             Random random = new Random();
             int randomNumber = random.nextInt(3);
             //vittima
             manager.incrementDeaths(vittima);
-            manager.resetTaglia(vittima);
+            manager.resetBounty(vittima);
             manager.resetStreak(vittima);
 
 
@@ -41,7 +41,7 @@ public class onKill implements Listener {
                 KitPvPCore.giveMoney(killer, taglia);
             }
             if(randomNumber == 0){
-                manager.incrementTaglia(killer);
+                manager.incrementBounty(killer);
             }
 
             BroadCast.broadcastMessage(KitPvPCore.getInstance().getConfig().getString("messages.kill")

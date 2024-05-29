@@ -13,7 +13,12 @@ messages:
   nomoney: "§4§lKITPVP §6§l>> §cNon hai abbastanza soldi"
   nonOnlinePlayer: "Il giocatore specificato non è online."
 
-xx: "PORCODIO"
+shopName:
+  shop: "Shop"
+  generale: "Generale"
+  libri: "Libri"
+  pot: "Pozioni"
+
 
 join-events:
   messages:

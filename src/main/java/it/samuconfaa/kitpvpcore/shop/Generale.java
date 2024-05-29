@@ -15,7 +15,7 @@ import java.util.Collections;
 
 public class Generale implements Listener {
     public static void openGenerale(Player p) {
-        Inventory Generale = Bukkit.createInventory(p, 27, "Generale");
+        Inventory Generale = Bukkit.createInventory(p, 27, KitPvPCore.getInstance().getConfig().getString("shopName.generale"));
 
         ItemStack Spada = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta metag = Spada.getItemMeta();
@@ -57,24 +57,24 @@ public class Generale implements Listener {
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
         Inventory inv = e.getInventory();
-        if (inv.getHolder() == null && "Generale".equals(inv.getTitle())) {
+        if (inv != null && inv.getName().equals(KitPvPCore.getInstance().getConfig().getString("shopName.generale"))) {
             e.setCancelled(true);
 
             Player p = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if (slot == 11) {
+            if (slot == 11 && KitPvPCore.checkMoney(p) >= 800) {
                 ItemStack Spada = new ItemStack(Material.DIAMOND_SWORD);
                 p.getInventory().addItem(Spada);
                 KitPvPCore.removeMoney(p, 800);
-            } else if (slot == 12) {
+            } else if (slot == 12&&KitPvPCore.checkMoney(p) >= 2200) {
                 ItemStack Mela = new ItemStack(Material.GOLDEN_APPLE, 2, (short) 1);
                 p.getInventory().addItem(Mela);
                 KitPvPCore.removeMoney(p, 2200);
-            } else if (slot == 14) {
+            } else if (slot == 14&&KitPvPCore.checkMoney(p) >= 2200) {
                 ItemStack Latte = new ItemStack(Material.MILK_BUCKET);
                 p.getInventory().addItem(Latte);
                 KitPvPCore.removeMoney(p, 2200);
-            } else if (slot == 15) {
+            } else if (slot == 15&&KitPvPCore.checkMoney(p) >= 2200) {
                 ItemStack exp = new ItemStack(Material.EXP_BOTTLE, 32);
                 p.getInventory().addItem(exp);
                 KitPvPCore.removeMoney(p, 2200);

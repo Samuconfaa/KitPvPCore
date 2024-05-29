@@ -4,6 +4,7 @@ import it.samuconfaa.kitpvpcore.NPC.DropNPC;
 import it.samuconfaa.kitpvpcore.NPC.FixNPC;
 import it.samuconfaa.kitpvpcore.NPC.ShopNPC;
 import it.samuconfaa.kitpvpcore.Stats.Manager;
+import it.samuconfaa.kitpvpcore.Stats.PlaceHolder;
 import it.samuconfaa.kitpvpcore.Stats.StatsCommand;
 import it.samuconfaa.kitpvpcore.commands.*;
 import it.samuconfaa.kitpvpcore.config.ConfigurationManager;
@@ -29,7 +30,7 @@ public final class KitPvPCore extends JavaPlugin {
     public static KitPvPCore instance;
     public static ConfigurationManager configManager;
     private GUIListener guiListener;
-
+    private Manager statsManager;
 
     @Override
     public void onEnable() {
@@ -37,8 +38,12 @@ public final class KitPvPCore extends JavaPlugin {
         saveDefaultConfig();
         configManager = new ConfigurationManager(this);
         guiListener = new GUIListener(this);
+        statsManager = new Manager();
         loadCommands();
         loadEvents();
+        if (getServer().getPluginManager().getPlugin("PlaceholderAPI") != null) {
+            new PlaceHolder(this, statsManager).register();
+        }
         if (!setupEconomy()) {
             getLogger().severe("Vault non è installato o nessun plugin economico è trovato!");
             getServer().getPluginManager().disablePlugin(this);
@@ -48,7 +53,6 @@ public final class KitPvPCore extends JavaPlugin {
     }
 
     public void loadCommands() {
-        Manager statsManager = new Manager();
         getCommand("build").setExecutor(new build(this));
         getCommand("fix").setExecutor(new fix(this));
         getCommand("reload").setExecutor(new reload(this));
@@ -61,11 +65,10 @@ public final class KitPvPCore extends JavaPlugin {
 
     public void loadEvents() {
         PluginManager pm = getPluginManager();
-        Manager manager = new Manager();
         pm.registerEvents(new block(), this);
         pm.registerEvents(new FIXlist(), this);
-        pm.registerEvents(new join(manager), this);
-        pm.registerEvents(new onKill(manager), this);
+        pm.registerEvents(new join(statsManager), this);
+        pm.registerEvents(new onKill(statsManager), this);
         pm.registerEvents(new FIXlist(), this);
         pm.registerEvents(guiListener, this);
         pm.registerEvents(new BroadCast(), this);
@@ -78,7 +81,6 @@ public final class KitPvPCore extends JavaPlugin {
         pm.registerEvents(new FixNPC(), this);
     }
 
-
     public void createYML() {
         settings = new UtilConfig(this, "config.yml", null);
         settings.saveDefaultConfig();
@@ -90,7 +92,7 @@ public final class KitPvPCore extends JavaPlugin {
 
     @Override
     public void onDisable() {
-        // Plugin shutdown logic
+        statsManager.saveStats(); // Salva le statistiche quando il plugin viene disabilitato
     }
 
     private boolean setupEconomy() {
@@ -127,7 +129,12 @@ public final class KitPvPCore extends JavaPlugin {
             econ.depositPlayer(player, amount);
         }
     }
+
     public GUIListener getGuiListener() {
         return guiListener;
+    }
+
+    public Manager getStatsManager() {
+        return statsManager;
     }
 }

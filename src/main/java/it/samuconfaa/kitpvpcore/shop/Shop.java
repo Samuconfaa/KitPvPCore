@@ -13,7 +13,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class Shop implements Listener {
     public static void openShop(Player p) {
-        Inventory shop = Bukkit.createInventory(p, 27, KitPvPCore.getInstance().getConfig().getString("xx"));
+        Inventory shop = Bukkit.createInventory(p, 27, KitPvPCore.getInstance().getConfig().getString("shopName.shop"));
 
         ItemStack generale = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta metaGenerale = generale.getItemMeta();
@@ -40,7 +40,7 @@ public class Shop implements Listener {
     public void onInventoryClick(InventoryClickEvent e) {
         Inventory inv = e.getClickedInventory();
 
-        if (inv != null && inv.equals(KitPvPCore.getInstance().getConfig().getString("xx"))) {
+        if (inv != null && inv.getName().equals(KitPvPCore.getInstance().getConfig().getString("shopName.shop"))) {
             e.setCancelled(true);
 
             Player p = (Player) e.getWhoClicked();

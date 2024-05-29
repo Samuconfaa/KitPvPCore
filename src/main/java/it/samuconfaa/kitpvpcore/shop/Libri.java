@@ -16,7 +16,7 @@ import java.util.Collections;
 public class Libri implements Listener {
 
     public static void openLibri(Player p) {
-        Inventory Libri = Bukkit.createInventory(p, 27, "Libri");
+        Inventory Libri = Bukkit.createInventory(p, 27, KitPvPCore.getInstance().getConfig().getString("shopName.libri"));
 
         ItemStack affilatezza = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta metaAffilatezza = affilatezza.getItemMeta();
@@ -65,28 +65,28 @@ public class Libri implements Listener {
     @EventHandler
     public void onInvClick(InventoryClickEvent e) {
         Inventory inv = e.getInventory();
-        if (inv.getHolder() == null && "Libri".equals(inv.getTitle())) {
+        if (inv != null && inv.getName().equals(KitPvPCore.getInstance().getConfig().getString("shopName.libri"))) {
             e.setCancelled(true);
 
             Player p = (Player) e.getWhoClicked();
             int slot = e.getRawSlot();
-            if (slot == 10) {
+            if (slot == 10&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack affilatezza = new ItemStack(Material.ENCHANTED_BOOK);
                 p.getInventory().addItem(affilatezza);
                 KitPvPCore.removeMoney(p, 4500);
-            } else if (slot == 11) {
+            } else if (slot == 11&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack protezione = new ItemStack(Material.ENCHANTED_BOOK);
                 p.getInventory().addItem(protezione);
                 KitPvPCore.removeMoney(p, 4500);
-            } else if (slot == 12) {
+            } else if (slot == 12&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack indistruttibilita = new ItemStack(Material.ENCHANTED_BOOK);
                 p.getInventory().addItem(indistruttibilita);
                 KitPvPCore.removeMoney(p, 4500);
-            } else if (slot == 13) {
+            } else if (slot == 13&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack aspettoDiFuoco = new ItemStack(Material.ENCHANTED_BOOK);
                 p.getInventory().addItem(aspettoDiFuoco);
                 KitPvPCore.removeMoney(p, 4500);
-            } else if (slot == 14) {
+            } else if (slot == 14&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack infinita = new ItemStack(Material.ENCHANTED_BOOK);
                 p.getInventory().addItem(infinita);
                 KitPvPCore.removeMoney(p, 4500);

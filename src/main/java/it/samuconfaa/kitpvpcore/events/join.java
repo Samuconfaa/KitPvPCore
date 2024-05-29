@@ -17,7 +17,7 @@ public class join implements Listener {
     @EventHandler
     public void onPlayerJoin(PlayerJoinEvent event) {
         Player p = event.getPlayer();
-        manager.checkPl(p);
+        manager.checkPlayer(p);
         String[] messages = KitPvPCore.getInstance().getConfig().getStringList("join-events.messages").toArray(new String[0]);
         for (String message : messages) {
             event.getPlayer().sendMessage(message.replace("{PLAYER}", event.getPlayer().getName()));
