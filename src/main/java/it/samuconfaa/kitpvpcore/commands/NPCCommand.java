@@ -24,7 +24,7 @@ public class NPCCommand implements CommandExecutor {
     public boolean onCommand(CommandSender se, Command command, String s, String[] a) {
         if(se instanceof Player){
             Player p = (Player) se;
-            if(p.hasPermission("kit.npc")){
+            if(p.hasPermission("kitpvp.npc")){
                 if(a.length != 1 && a.length != 2 ){
                     return false;
                 }else if(a[0].equalsIgnoreCase("fix")){

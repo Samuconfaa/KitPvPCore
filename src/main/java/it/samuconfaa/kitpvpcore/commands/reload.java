@@ -15,7 +15,7 @@ public class reload implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-        if(commandSender.hasPermission("kit.reload")){
+        if(commandSender.hasPermission("kitpvp.reload")){
             UtilConfig.reloadConfig();
             commandSender.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.reload"));
         }

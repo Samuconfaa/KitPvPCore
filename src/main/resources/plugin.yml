@@ -11,3 +11,8 @@ commands:
   kitnpc:
   shop:
   kitnpclist:
+
+permissions:
+  kitpvp.build: command /build
+  kitpvp.npc: add or remove npc
+  kitpvp.reload: for /kitreload (reload config file)

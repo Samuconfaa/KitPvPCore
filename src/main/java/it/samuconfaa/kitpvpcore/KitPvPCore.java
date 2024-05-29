@@ -55,7 +55,7 @@ public final class KitPvPCore extends JavaPlugin {
     public void loadCommands() {
         getCommand("build").setExecutor(new build(this));
         getCommand("fix").setExecutor(new fix(this));
-        getCommand("reload").setExecutor(new reload(this));
+        getCommand("kitreload").setExecutor(new reload(this));
         getCommand("stats").setExecutor(new StatsCommand(this, statsManager));
         getCommand("drop").setExecutor(new DropCommand(this));
         getCommand("shop").setExecutor(new ShopCommand(this));

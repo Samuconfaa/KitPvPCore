@@ -19,10 +19,11 @@ public class NPCListCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.player-only"));
-            return true;
-        }
+        if (sender.hasPermission("kitpvp.npc"))
+            if (!(sender instanceof Player)) {
+                sender.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.player-only"));
+                return true;
+            }
 
         Player player = (Player) sender;
         Collection<NPC> npcs = (Collection<NPC>) CitizensAPI.getNPCRegistry().sorted();
@@ -39,3 +40,4 @@ public class NPCListCommand implements CommandExecutor {
         return true;
     }
 }
+
