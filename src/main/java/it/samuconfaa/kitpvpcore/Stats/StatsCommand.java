@@ -42,14 +42,16 @@ public class StatsCommand implements CommandExecutor {
             }
         } else if (args.length == 3) {
             // Comando /stats [player] [kill, deaths, streak, bounty] [amount] per impostare le statistiche di un altro player
-            Player targetPlayer = Bukkit.getPlayer(args[0]);
-            if (targetPlayer != null && targetPlayer.isOnline()) {
-                setPlayerStat(player, targetPlayer, args[1], args[2]);
+            if (player.hasPermission("kitpvp.statsother")) {
+                Player targetPlayer = Bukkit.getPlayer(args[0]);
+                if (targetPlayer != null && targetPlayer.isOnline()) {
+                    setPlayerStat(player, targetPlayer, args[1], args[2]);
+                } else {
+                    player.sendMessage(plugin.getConfig().getString("messages.nonOnlinePlayer"));
+                }
             } else {
-                player.sendMessage(plugin.getConfig().getString("messages.nonOnlinePlayer"));
-            }
-        } else {
-            player.sendMessage("Usage: /stats [player] [kill, deaths, streak, bounty] [amount]");
+                player.sendMessage("Usage: /stats [player] [kill, deaths, streak, bounty] [amount]");
+            }plugin.getConfig().getString("messages.nopermission");
         }
 
         return true;

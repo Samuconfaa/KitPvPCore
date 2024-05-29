@@ -69,6 +69,8 @@ public class FIXlist implements Listener {
             if (slot == ConfigurationManager.anvilPos()) {
                 if (KitPvPCore.checkMoney(player) >= ConfigurationManager.price()) {
                     repairAllItems(player);
+                    player.sendMessage(KitPvPCore.getInstance().getConfig().getString("messages.repaired"));
+
 
                 } else {
                     player.sendMessage(ConfigurationManager.nomoney());

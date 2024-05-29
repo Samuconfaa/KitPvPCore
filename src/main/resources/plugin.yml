@@ -1,18 +1,30 @@
 name: KitPvPCore
 version: '${project.version}'
 main: it.samuconfaa.kitpvpcore.KitPvPCore
-depend: [Citizens] [PlaceholderAPI] [Vault]
+depend:
+  - Citizens
+  - PlaceholderAPI
+  - Vault
 commands:
-  build:
-  fix:
-  reload:
-  stats:
-  drop:
-  kitnpc:
-  shop:
-  kitnpclist:
+  build: {}
+  fix: {}
+  kitreload: {}
+  stats: {}
+  drop: {}
+  kitnpc: {}
+  shop: {}
+  kitnpclist: {}
 
 permissions:
-  kitpvp.build: command /build
-  kitpvp.npc: add or remove npc
-  kitpvp.reload: for /kitreload (reload config file)
+  kitpvp.build:
+    description: "Allows the use of /build"
+    default: op
+  kitpvp.npc:
+    description: "Allows adding or removing NPCs"
+    default: op
+  kitpvp.reload:
+    description: "Allows reloading the config file with /kitreload"
+    default: op
+  kitpvp.statsother:
+    description: "Allows setting other players' stats"
+    default: op

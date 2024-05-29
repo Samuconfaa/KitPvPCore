@@ -12,6 +12,7 @@ messages:
   kill: "§4§lKITPVP §6§l>> §a%player% ha ucciso %victim%"
   nomoney: "§4§lKITPVP §6§l>> §cNon hai abbastanza soldi"
   nonOnlinePlayer: "Il giocatore specificato non è online."
+  repaired: "§4§lKITPVP §6§l>> §aInventario riparato "
 
 shopName:
   shop: "Shop"

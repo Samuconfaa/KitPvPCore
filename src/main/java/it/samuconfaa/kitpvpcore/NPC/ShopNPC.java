@@ -12,7 +12,7 @@ import org.bukkit.event.Listener;
 import java.util.UUID;
 
 public class ShopNPC implements Listener{
-    public void createNPC( Player p){
+    public static void createNPC(Player p){
         NPC npc = CitizensAPI.getNPCRegistry().createNPC(EntityType.PLAYER, KitPvPCore.getInstance().getConfig().getString("NPC.shopName"));
         npc.spawn(p.getLocation());
         setRandomSkin(npc);

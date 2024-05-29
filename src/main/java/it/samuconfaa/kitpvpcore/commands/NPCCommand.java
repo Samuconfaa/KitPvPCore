@@ -34,7 +34,7 @@ public class NPCCommand implements CommandExecutor {
                     DropNPC.createNPC(p);
                     return true;
                 }else if(a[0].equalsIgnoreCase("shop")){
-                    FixNPC.createNPC(p);
+                    ShopNPC.createNPC(p);
                     return true;
                 }else if(a[0].equalsIgnoreCase("remove")){
                     int id = Integer.parseInt(a[1]);

@@ -3,12 +3,14 @@ package it.samuconfaa.kitpvpcore.shop;
 import it.samuconfaa.kitpvpcore.KitPvPCore;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.EnchantmentStorageMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Collections;
@@ -72,22 +74,37 @@ public class Libri implements Listener {
             int slot = e.getRawSlot();
             if (slot == 10&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack affilatezza = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) affilatezza.getItemMeta();
+                meta.addStoredEnchant(Enchantment.DAMAGE_ALL, 4, true);
+                affilatezza.setItemMeta(meta);
                 p.getInventory().addItem(affilatezza);
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 11&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack protezione = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) protezione.getItemMeta();
+                meta.addStoredEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 4, true);
+                protezione.setItemMeta(meta);
                 p.getInventory().addItem(protezione);
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 12&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack indistruttibilita = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) indistruttibilita.getItemMeta();
+                meta.addStoredEnchant(Enchantment.DURABILITY, 3, true);
+                indistruttibilita.setItemMeta(meta);
                 p.getInventory().addItem(indistruttibilita);
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 13&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack aspettoDiFuoco = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) aspettoDiFuoco.getItemMeta();
+                meta.addStoredEnchant(Enchantment.FIRE_ASPECT, 2, true);
+                aspettoDiFuoco.setItemMeta(meta);
                 p.getInventory().addItem(aspettoDiFuoco);
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 14&& KitPvPCore.checkMoney(p) >= 4500) {
                 ItemStack infinita = new ItemStack(Material.ENCHANTED_BOOK);
+                EnchantmentStorageMeta meta = (EnchantmentStorageMeta) infinita.getItemMeta();
+                meta.addStoredEnchant(Enchantment.ARROW_INFINITE, 1, true);
+                infinita.setItemMeta(meta);
                 p.getInventory().addItem(infinita);
                 KitPvPCore.removeMoney(p, 4500);
             } else if (slot == 26) {
